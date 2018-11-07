@@ -1,0 +1,79 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pieces.spaserver.mapper.user.UserMapper">
+
+    <resultMap id="userMap" type="com.pieces.spaserver.model.user.User">
+        <id property="id" column="id" />
+        <result property="no" column="no"/>
+        <result property="name" column="name"/>
+        <result property="loginName" column="login_name"/>
+        <result property="loginPassWord" column="login_pwd"/>
+    </resultMap>
+
+    <resultMap id="roleMap" type="com.pieces.spaserver.model.user.Role">
+        <id property="id" column="id" />
+        <result property="no" column="no"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getUserByName" resultMap="userMap" parameterType="String">
+		SELECT
+		  *
+		FROM
+		  PFP_USER
+		where
+		  login_name = #{name}
+	</select>
+
+    <select id="getUserRoles" resultMap="roleMap" parameterType="com.pieces.spaserver.model.user.User">
+        SELECT
+          RO.ID,
+          RO.NO,
+          RO.NAME
+        FROM
+          PFP_USER UE
+        LEFT JOIN
+          PFP_USER_ROLE UR
+        ON
+          UE.ID = UR.USER_ID
+        LEFT JOIN
+          PFP_ROLE RO
+        ON
+          UR.ROLE_ID = RO.ID
+        WHERE
+          UE.ID = #{id}
+    </select>
+
+    <update id="lockUser" parameterType="com.pieces.spaserver.model.user.User">
+		UPDATE
+			PFP_USER 
+		SET  
+			LOCK_FLAG = 1,
+			LOCK_TIME = #{lockTime},
+			LOCK_REASON = #{lockReason}
+		WHERE
+			ID = #{id}
+	</update>
+
+    <update id="releaseUser" parameterType="com.pieces.spaserver.model.user.User">
+		UPDATE
+		  PFP_USER
+		SET  
+		  LOCK_FLAG = 2,
+		  LOCK_TIME = NULL,
+		  LOCK_REASON = NULL,
+		  LOGIN_COUNT = 0
+		WHERE
+		  ID = #{id}
+	</update>
+
+    <update id="changeLoginCount" parameterType="com.pieces.spaserver.model.user.User">
+		UPDATE
+		  PFP_USER
+		SET  
+		  LOGIN_COUNT = #{loginCount}
+		WHERE
+		  ID = #{id}
+	</update>
+
+</mapper>
