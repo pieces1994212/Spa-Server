@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:自定义用户
+ * @Description:自定义用户登录验证
  * @PackageName: com.pieces.spaserver.config.security
  * @date 16:02 2018/11/7
  * @编辑：
