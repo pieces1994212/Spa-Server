@@ -35,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private Integer lockingTime;
 
     @Value("${user.max.logincount}")
-    private Integer maxLoginConut;
+    private Integer maxLoginCount;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -76,7 +76,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         // 与authentication里面的credentials相比较
         String pwd = (String) token.getCredentials();
         if (!bCryptPasswordEncoder.matches(pwd, password)) {
-            if(null == user.getLoginCount() || user.getLoginCount()<=maxLoginConut-2){
+            if(null == user.getLoginCount() || user.getLoginCount()<=maxLoginCount-2){
                 //小于n-2次增加登陆次数，不锁定
                 if(null == user.getLoginCount()){
                     user.setLoginCount(1);
@@ -84,11 +84,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                     user.setLoginCount(user.getLoginCount()+1);
                 }
                 userDetailsService.updateUserLoginCount(user);
-                throw new BadCredentialsException("用户名或密码错误！还有"+(maxLoginConut-user.getLoginCount())+"次机会！");
+                throw new BadCredentialsException("用户名或密码错误！还有"+(maxLoginCount-user.getLoginCount())+"次机会！");
             }else{
                 //最后一次尝试(n-1次)失败，锁定账户
                 //或者已经N次，解锁后仍输入错误，继续锁定账户
-                user.setLoginCount(maxLoginConut);
+                user.setLoginCount(maxLoginCount);
                 user.setLockFlag(1);
                 user.setLockTime(new Date());
                 user.setLockReason("连续登陆失败超过最大次数");
