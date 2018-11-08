@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:自定义用户信息提供的实现
+ * @Description: 自定义
  * @PackageName: com.pieces.spaserver.config.security
  * @date 15:29 2018/11/7
  * @编辑：

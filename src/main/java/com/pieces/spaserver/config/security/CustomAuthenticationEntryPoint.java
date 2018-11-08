@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:自定义用户未登录时访问后台接口的处理，返回未登陆错误
+ * @Description: 自定义用户未登录时访问后台接口的处理，返回未登陆错误
  * @PackageName: com.pieces.spaserver.config.security
  * @date 14:37 2018/11/7
  * @编辑：

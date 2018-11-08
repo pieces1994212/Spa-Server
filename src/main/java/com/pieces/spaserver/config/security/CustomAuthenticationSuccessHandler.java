@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:自定义用户登陆成功后的处理，这里是返回成功的状态以及用户名
+ * @Description: 自定义用户登陆成功后的处理，这里是返回成功的状态以及用户名
  * @PackageName: com.pieces.spaserver.config.security
  * @date 14:31 2018/11/7
  * @编辑：

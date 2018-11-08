@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:
+ * @Description: 用户mapper
  * @PackageName: com.pieces.spaserver.mapper.user
  * @date 15:33 2018/11/6
  * @编辑：

@@ -16,7 +16,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 /**
  * @author Xujing
  * @ClassName: ${CLASS_NAME}
- * @Description:
+ * @Description: Security配置
  * @PackageName: com.pieces.spaserver.config
  * @date 8:55 2018/11/7
  * @编辑：

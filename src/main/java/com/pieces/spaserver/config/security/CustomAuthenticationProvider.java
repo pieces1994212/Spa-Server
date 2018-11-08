@@ -96,6 +96,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                 userDetailsService.updateUserLoginCount(user);
                 //锁定用户
                 userDetailsService.lockUser(user);
+                logger.warn("账号锁定===>"+username+" 锁定原因:连续登陆失败超过最大次数");
                 throw new BadCredentialsException("此账号已锁定!请于"+lockingTime/60000+"分钟后重试！");
             }
         }

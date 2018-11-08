@@ -171,7 +171,6 @@ public class User extends BaseEntity implements UserDetails {
         this.email = email;
     }
 
-
     public Integer getDisableFlag() {
         return disableFlag;
     }
@@ -180,6 +179,10 @@ public class User extends BaseEntity implements UserDetails {
         this.disableFlag = disableFlag;
     }
 
+    /**
+     * 重写getAuthorities()方法，正确加载当前用户权限
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
