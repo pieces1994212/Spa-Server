@@ -11,7 +11,7 @@ create table pfp_role
   unique (NO)
 )
   comment 'PFP_ROLE
-��ɫ';
+角色';
 
 create table pfp_user
 (
@@ -70,3 +70,53 @@ create table pfp_user_role
 
 create index PFP_USER_ROLE_IDX_ROLE_ID
   on pfp_user_role (ROLE_ID);
+
+
+create table pfp_function
+(
+  ID        decimal(16)  not null
+  comment '唯一标志'
+    primary key,
+  NAME      varchar(256) not null
+  comment '名称，显示在界面上的功能名称',
+  NO        varchar(32)  not null
+  comment '编码，一般唯一',
+  SEQ       decimal(6)   not null
+  comment '排序序号，一般用于界面显示',
+  TYPE      decimal(6)   not null
+  comment '类型，主要有菜单、菜单项、按钮、子页面、功能点',
+  COMPONENT varchar(32)  null
+  comment '路由对应组件名',
+  PATH      varchar(512) null
+  comment '功能的路由或接口的路径',
+  PARENT_ID decimal(16)  null
+  comment '上级ID',
+  REMARK    varchar(512) null
+  comment '详细说明',
+  constraint PFP_FUNCTION_UK_NO
+  unique (NO)
+)
+  comment 'PFP_FUNCTION
+具体的功能，包括菜单、菜单项、按钮、子页面、功能点等，树形结构。';
+
+create index PFP_FUNCTION_IDX_PARENT_ID
+  on pfp_function (PARENT_ID);
+
+
+create table pfp_role_func
+(
+  ID      decimal(16) not null
+  comment '唯一标示'
+    primary key,
+  FUNC_ID decimal(16) not null
+  comment '功能点ID',
+  ROLE_ID decimal(16) not null
+  comment '角色id',
+  constraint PFP_ROLE_FUNC_IDX_ROLE_FUNC
+  unique (FUNC_ID, ROLE_ID)
+)
+  comment 'PFP_ROLE_FUNCTION
+功能点与角色关系';
+
+create index PFP_ROLE_FUNC_IDX_ROLE_ID
+  on pfp_role_func (ROLE_ID);
