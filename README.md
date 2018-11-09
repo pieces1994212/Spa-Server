@@ -1,7 +1,7 @@
 # Spa-Server
 The api server
 
-spa应用后台服务器
+spa应用后台服务
 
 springboot2.0 + MyBatis + MySql
 
