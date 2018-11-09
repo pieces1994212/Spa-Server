@@ -3,7 +3,9 @@ package com.pieces.spaserver.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-public class BaseEntity {
+import java.io.Serializable;
+
+public class BaseEntity implements Serializable {
 
     @Id
     private Long id;

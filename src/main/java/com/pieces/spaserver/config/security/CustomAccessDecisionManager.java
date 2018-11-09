@@ -35,6 +35,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
                 }
             }
         }
+        // 权限比对错误，授权失败
         throw new AccessDeniedException("");
     }
 

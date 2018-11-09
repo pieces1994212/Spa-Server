@@ -32,6 +32,7 @@ public class CustomInvocationSecurityMetadataSourceService implements FilterInvo
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
         String url = ((FilterInvocation) object).getRequestUrl();
+        // 这里对静态资源进行过滤
         if (!url.matches("^.*\\.(js|png|css|font|jpg).*$")) {
             List<String> roles = functionMapper.queryRolesByUrl(url);
             for(String role:roles){

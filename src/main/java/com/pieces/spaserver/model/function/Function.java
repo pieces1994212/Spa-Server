@@ -13,6 +13,8 @@ import com.pieces.spaserver.model.BaseEntity;
  */
 public class Function extends BaseEntity {
 
+
+
     /**
      * 编号
      */
@@ -52,6 +54,11 @@ public class Function extends BaseEntity {
      * 备注
      */
     private String remark;
+
+    @Override
+    public String toString() {
+        return this.name+this.type+this.No;
+    }
 
     public String getNo() {
         return No;

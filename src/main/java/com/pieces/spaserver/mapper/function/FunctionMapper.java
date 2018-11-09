@@ -1,5 +1,6 @@
 package com.pieces.spaserver.mapper.function;
 
+import com.pieces.spaserver.model.function.Function;
 import com.pieces.spaserver.model.user.Role;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +24,11 @@ public interface FunctionMapper {
      * @return
      */
     List<String> queryRolesByUrl(String url);
+
+    /**
+     * 功能查询接口
+     * @param info
+     * @return
+     */
+    List<Function> queryFunctions(Function info);
 }

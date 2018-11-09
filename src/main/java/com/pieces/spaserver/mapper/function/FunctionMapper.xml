@@ -10,7 +10,7 @@
         <result property="type" column="type"/>
         <result property="component" column="component"/>
         <result property="path" column="path"/>
-        <result property="parentId" column="parentId"/>
+        <result property="parentId" column="parent_Id"/>
         <result property="remark" column="remark"/>
     </resultMap>
 
@@ -38,5 +38,22 @@
 		AND
 		  FUN.PATH = #{path}
 	</select>
+
+    <select id="queryFunctions" resultMap="functionMap" parameterType="com.pieces.spaserver.model.function.Function">
+        SELECT
+          ID,
+          NO,
+          NAME,
+          SEQ,
+          TYPE,
+          COMPONENT,
+          PATH,
+          PARENT_ID,
+          REMARK
+        FROM
+          PFP_FUNCTION
+        WHERE
+          TYPE = #{type}
+    </select>
 
 </mapper>
