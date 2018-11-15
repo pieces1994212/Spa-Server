@@ -57,7 +57,25 @@ public class Function extends BaseEntity {
 
     @Override
     public String toString() {
-        return this.name+this.type+this.No;
+        return "function:{ no:'" + this.getNo() + "',name:'" + this.getName() + "'}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj!=null && obj.getClass() == this.getClass()){
+            Function fun = (Function) obj;
+            if(null != fun.getNo() && this.getNo().equalsIgnoreCase(fun.getNo())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = result * 31 + this.getNo().hashCode();
+        return result;
     }
 
     public String getNo() {
