@@ -36,7 +36,7 @@
           PFP_USER_ROLE UR
         ON
           UE.ID = UR.USER_ID
-        LEFT JOIN
+        INNER JOIN
           PFP_ROLE RO
         ON
           UR.ROLE_ID = RO.ID

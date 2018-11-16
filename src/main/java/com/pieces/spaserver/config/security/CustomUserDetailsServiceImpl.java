@@ -31,6 +31,9 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         User user = userMapper.getUserByName(username);
         if(null != user){
             List<Role> roleList = userMapper.getUserRoles(user);
+            if(roleList.size() == 0){
+                return null;
+            }
             user.setRoles(roleList);
         }
         return user;
