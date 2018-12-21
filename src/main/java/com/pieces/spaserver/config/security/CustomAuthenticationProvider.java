@@ -62,9 +62,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         } else if (!userDetails.isAccountNonLocked()) {
             //判断是否过了锁定时间
             Date relaseDate =new Date(user.getLockTime().getTime() + lockingTime);
-            if(new Date().getTime()<relaseDate.getTime()){
+            if(System.currentTimeMillis()<relaseDate.getTime()){
                 //还未到锁定时间,计算解除锁定时间
-                Long mintues = (relaseDate.getTime()- new Date().getTime())/(1000*60);
+                Long mintues = (relaseDate.getTime()- System.currentTimeMillis())/(1000*60);
                 throw new LockedException("此账号已锁定！请于"+mintues+"分钟后重试！");
             }
         } else if (!userDetails.isCredentialsNonExpired()) {
